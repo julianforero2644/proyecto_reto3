@@ -28,6 +28,12 @@ public class SkateController {
         return servicios.save(skate);
     }
 
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Skate update(@RequestBody Skate skate) {
+        return servicios.update(skate);
+    }
+
     @DeleteMapping("/{id}")
     public boolean delete(@PathVariable("id") int id){
         return servicios.delete(id);

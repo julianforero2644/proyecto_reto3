@@ -19,8 +19,8 @@ public class MessageController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Message> getMessage(@PathVariable("id") int id){
-        return servicios.getMessage(id);
+    public Optional<Message> getMessage(@PathVariable("id") int idMessage){
+        return servicios.getMessage(idMessage);
     }
 
     @PostMapping("/save")
@@ -29,9 +29,15 @@ public class MessageController {
         return servicios.save(message);
     }
 
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Message update(@RequestBody Message message) {
+        return servicios.update(message);
+    }
+
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable("id") int id){
-        return servicios.delete(id);
+    public boolean delete(@PathVariable("id") int idMessage){
+        return servicios.delete(idMessage);
     }
 
 }

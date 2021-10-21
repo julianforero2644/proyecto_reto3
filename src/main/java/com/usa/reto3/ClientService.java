@@ -35,9 +35,32 @@ public class ClientService {
     }
 
 
-    public boolean delete(int id){
+    public Client update(Client client){
+        if(client.getIdClient()!=null){
+            Optional<Client> e= metodosCrud.getClient(client.getIdClient());
+            if(!e.isEmpty()){
+                if(client.getName()!=null){
+                    e.get().setName(client.getName());
+                }
+                if(client.getAge()!=null){
+                    e.get().setAge(client.getAge());
+                }
+                if(client.getPassword()!=null){
+                    e.get().setPassword(client.getPassword());
+                }
+                metodosCrud.save(e.get());
+                return e.get();
+            }else{
+                return client;
+            }
+        }else{
+            return client;
+        }
+    }
 
-        Boolean aBoolean=getClient(id).map(client -> {
+    public boolean delete(int idClient){
+
+        Boolean aBoolean=getClient(idClient).map(client -> {
             metodosCrud.delete(client);
             return true;
         }).orElse(aBoolean=false);

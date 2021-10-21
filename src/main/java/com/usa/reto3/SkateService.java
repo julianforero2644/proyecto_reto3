@@ -19,22 +19,53 @@ public class SkateService {
         return metodosCrud.getSkate(id);
     }
     
-    public Skate save(Skate skate){
-         if(skate.getId()==null){
+    public Skate save(Skate skate) {
+        if (skate.getId() == null) {
             return metodosCrud.save(skate);
-        }else{
-            Optional<Skate> evt=metodosCrud.getSkate(skate.getId());
-            if(evt.isEmpty()){
-            return metodosCrud.save(skate);
+        } else {
+            Optional<Skate> evt = metodosCrud.getSkate(skate.getId());
+            if (evt.isEmpty()) {
+                return metodosCrud.save(skate);
+            } else {
+                return skate;
+            }
+
+        }
+    }
+
+    //Metodo de Actualizar
+    public Skate update(Skate skate){
+        if(skate.getId()!=null){
+            Optional<Skate> e=metodosCrud.getSkate(skate.getId());
+            if(!e.isEmpty()){
+                if(skate.getName()!=null){
+                    e.get().setName(skate.getName());
+                }
+                if(skate.getBrand()!=null){
+                    e.get().setBrand(skate.getBrand());
+                }
+                if(skate.getYear()!=null){
+                    e.get().setYear(skate.getYear());
+                }
+                if(skate.getDescription()!=null){
+                    e.get().setDescription(skate.getDescription());
+                }
+                if(skate.getCategory()!=null){
+                    e.get().setCategory(skate.getCategory());
+                }
+                metodosCrud.save(e.get());
+                return e.get();
             }else{
                 return skate;
             }
-        
+        }else{
+            return skate;
         }
     }
 
 
-    public boolean delete(int id){
+
+        public boolean delete(int id){
 
         Boolean aBoolean=getSkate(id).map(skate -> {
             metodosCrud.delete(skate);

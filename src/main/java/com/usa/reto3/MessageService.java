@@ -35,9 +35,27 @@ public class MessageService {
     }
 
 
-    public boolean delete(int id){
+    public Message update(Message message){
+        if(message.getIdMessage()!=null){
+            Optional<Message> e= metodosCrud.getMessage(message.getIdMessage());
+            if(!e.isEmpty()){
+                if(message.getMessageText()!=null){
+                    e.get().setMessageText(message.getMessageText());
+                }
+                metodosCrud.save(e.get());
+                return e.get();
+            }else{
+                return message;
+            }
+        }else{
+            return message;
+        }
+    }
 
-        Boolean aBoolean=getMessage(id).map(message -> {
+
+    public boolean delete(int idMessage){
+
+        Boolean aBoolean=getMessage(idMessage).map(message -> {
             metodosCrud.delete(message);
             return true;
         }).orElse(aBoolean=false);

@@ -19,8 +19,8 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Client> getClient(@PathVariable("id") int id){
-        return servicios.getClient(id);
+    public Optional<Client> getClient(@PathVariable("id") int idClient){
+        return servicios.getClient(idClient);
     }
 
     @PostMapping("/save")
@@ -29,8 +29,14 @@ public class ClientController {
         return servicios.save(client);
     }
 
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Client update(@RequestBody Client client) {
+        return servicios.update(client);
+    }
+
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable("id") int id){
-        return servicios.delete(id);
+    public boolean delete(@PathVariable("id") int idClient){
+        return servicios.delete(idClient);
     }
 }
