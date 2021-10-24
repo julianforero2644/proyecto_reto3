@@ -35,6 +35,7 @@ public class SkateController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int id){
         return servicios.delete(id);
     }
