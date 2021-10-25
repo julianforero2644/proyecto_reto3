@@ -51,9 +51,9 @@ public class CategoryService {
         return category;
     }
 
-    public boolean delete(int id){
+    public boolean delete(int idCategory){
 
-        Boolean aBoolean=getCategory(id).map(category -> {
+        Boolean aBoolean=getCategory(idCategory).map(category -> {
             metodosCrud.delete(category);
             return true;
         }).orElse(aBoolean=false);

@@ -60,12 +60,10 @@ public class ReservationService {
     }
 
     public boolean delete(int idReservation){
-
         Boolean aBoolean=getReservation(idReservation).map(reservation -> {
             metodosCrud.delete(reservation);
             return true;
         }).orElse(aBoolean=false);
-
         return aBoolean;
     }
 }

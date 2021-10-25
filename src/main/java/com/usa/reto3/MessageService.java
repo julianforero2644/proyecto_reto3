@@ -54,12 +54,10 @@ public class MessageService {
 
 
     public boolean delete(int idMessage){
-
         Boolean aBoolean=getMessage(idMessage).map(message -> {
             metodosCrud.delete(message);
             return true;
         }).orElse(aBoolean=false);
-
         return aBoolean;
     }
 }
