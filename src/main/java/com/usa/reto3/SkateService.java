@@ -65,7 +65,7 @@ public class SkateService {
 
 
 
-        public boolean delete(int id){
+    public boolean delete(int id){
         Boolean aBoolean=getSkate(id).map(skate -> {
             metodosCrud.delete(skate);
             return true;
